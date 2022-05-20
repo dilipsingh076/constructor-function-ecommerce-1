@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <form id="product" onsubmit="submitproduct()">
+        <input type="text" placeholder="Product name" id="name">
+        <input type="text" placeholder="category" id="category">
+        <input type="url" placeholder="image url" id="image">
+        <input type="number" placeholder="Price" id="price">
+        <select id="gender">
+            <option value="">----</option>
+            <option value="male">male</option>
+            <option value="female">female</option>
+        </select>
+       <select  id="sold">
+           <option value="false">False</option>
+           <option value="true">True</option>
+       </select>
+        <input type="submit" id="add">
+        
+    </form>
+    
+</body>
+</html>
+<script>
+
+    function product(name,category,image,price,gender,sold){
+
+        this.name = name;
+        
+        this.category =category;
+        this.image = image;
+        this.price = price;
+        this.gender = gender;
+        this.sold = sold
+        console.log(name,category,image,price,gender,sold)
+    }
+
+    let arr = []
+
+    function submitproduct(){
+        event.preventDefault()
+        let form= document.getElementById("products")
+        console.log(form)
+        let name = document.querySelector("#name").value
+        let category = document.querySelector("#category").value
+        let url = document.querySelector("#image").value
+        let price = document.querySelector("#price").value
+        let gender = document.querySelector("#gender").value
+        let sold = document.querySelector("#sold").value
+
+
+        let output = new product(name,category,image,price,gender,sold)
+        arr.push(output)
+        console.log(arr)
+
+        localStorage.setItem("Products",JSON.stringify(arr))
+    }
+
+</script>
