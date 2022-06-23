@@ -1,65 +1,131 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Ecommerce 1</title>
+    <style>
+        #navbar{
+            border:1px solid black;
+            display: flex;
+            justify-content: space-around;
+            margin-bottom: 50px;
+            font-size: 25px;
+            background-color: rgb(2, 172, 172);
+            color: white;
+        }
+        #container{
+            /* border: 1px solid black; */
+            width: 20%;
+            margin: auto;
+            padding: 15px;
+            background-color: #F6BD60;
+            color: #f85263;
+            font-size: 20px;
+            border-radius: 15px;
+            box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+
+        }
+        .lable{
+            /* border: 1px solid brown; */
+            margin: 30%;
+            
+            
+        }
+        input{
+            /* border: 1px solid pink; */
+            margin-left: 10%;
+            margin-top: 12px;
+            margin-bottom: 12px;
+            border: none;
+        }
+        select{
+            /* border: 1px solid pink; */
+            border: none;
+            margin-left: 28%;
+            margin-top: 12px;
+            margin-bottom: 12px;
+        }
+        #add{
+            border: none;
+            cursor: pointer;
+            margin-left: 25%;
+            width: 40%;
+            background-color: #f49a8c;
+            border-radius: 15px;
+            padding: 8px;
+            color: #ff3aad;
+            font-size: 15px;
+            
+        }
+    </style>
 </head>
+
 <body>
-    <form id="product" onsubmit="submitproduct()">
-        <input type="text" placeholder="Product name" id="name">
-        <input type="text" placeholder="category" id="category">
-        <input type="url" placeholder="image url" id="image">
-        <input type="number" placeholder="Price" id="price">
-        <select id="gender">
-            <option value="">----</option>
-            <option value="male">male</option>
-            <option value="female">female</option>
-        </select>
-       <select  id="sold">
-           <option value="false">False</option>
-           <option value="true">True</option>
-       </select>
-        <input type="submit" id="add">
-        
-    </form>
-    
+    <div id="navbar">
+        <div>Home</div>
+        <div>Log in</div>
+        <div>Sign Up</div>
+        <div>Product</div>
+    </div>
+    <div id="container">
+        <form action="" onsubmit="Submit()" id="form">
+            <label for="" class="lable">Name</label><br>
+            <input type="text" placeholder="Product name" id="name"><br>
+            <label for="" class="lable">Category</label><br>
+            <input type="text" placeholder="Category" id="category"><br>
+            <label for="" class="lable">Image url</label><br>
+            <input type="url" placeholder="image url" id="image"><br>
+            <label for="" class="lable">Price</label> <br>
+            <input type="number" placeholder="Price" id="price"><br>
+            <label class="lable">Gender</label> <br>
+            <select id="gender">
+                <option value="">----</option>
+                <option value="male">male</option>
+                <option value="female">female</option>
+            </select><br>
+            <label for="" class="lable">Sold</label><br>
+            <select id="sold">
+                <option value="false">False</option>
+                <option value="true">True</option>
+            </select><br>
+            <input type="submit" id="add">
+        </form>
+    </div>
 </body>
+
 </html>
+
 <script>
-
-    function product(name,category,image,price,gender,sold){
-
+    let arr = []
+    function product(name, category, image, price, gender, sold) {
         this.name = name;
-        
-        this.category =category;
+        this.category = category;
         this.image = image;
         this.price = price;
         this.gender = gender;
-        this.sold = sold
-        console.log(name,category,image,price,gender,sold)
+        this.sold = sold;
+        console.log(name, category, image, price, gender, sold)
     }
-
-    let arr = []
-
-    function submitproduct(){
-        event.preventDefault()
-        let form= document.getElementById("products")
+    function Submit() {
+        event.preventDefault();
+        let form = document.getElementById("form");
         console.log(form)
-        let name = document.querySelector("#name").value
-        let category = document.querySelector("#category").value
-        let url = document.querySelector("#image").value
-        let price = document.querySelector("#price").value
-        let gender = document.querySelector("#gender").value
-        let sold = document.querySelector("#sold").value
+        let name = document.querySelector("#name").value;
+        let category = document.querySelector("#category").value;
+        let image = document.querySelector("#image").value;
+        let price = document.querySelector("#price").value;
+        let gender = document.querySelector("#gender").value;
+        let sold = document.querySelector("#sold").value;
 
-
-        let output = new product(name,category,image,price,gender,sold)
+        let output = new product(name, category, image, price, gender, sold)
         arr.push(output)
         console.log(arr)
+        //    console.log(output)
+        localStorage.setItem("products", JSON.stringify(arr))
 
-        localStorage.setItem("Products",JSON.stringify(arr))
+
     }
-
 </script>
